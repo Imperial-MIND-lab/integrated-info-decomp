@@ -1,15 +1,16 @@
 """For testing calculate.py file."""
 import pytest
-from pathlib import Path
+import urllib.request
 import numpy as np
 from scipy.io import loadmat
 from phyid.calculate import calc_PhiID
 from phyid.utils import PhiID_atoms_abbr
 
-@pytest.fixture
-def PhiID_matlab_sample_1():
-    temp_file = Path("/mnt/raid1/PycharmProjects/networks-2/project-20230803-pidt/data/luppi2023/PhiID_test_1.mat")
-    return loadmat(temp_file)
+@pytest.fixture(scope="session")
+def PhiID_test_simple_1(tmp_path_factory):
+    fn = tmp_path_factory.mktemp("test-data") / "PhiID_test_simple_1.mat"
+    urllib.request.urlretrieve("https://osf.io/download/45u3y/", fn)
+    return loadmat(fn)
 
 calc_PhiID_test_params = [
     ("gaussian", "MMI", "PhiIDFull_MMI"),
@@ -19,9 +20,9 @@ calc_PhiID_test_params = [
 ]
 
 @pytest.mark.parametrize("kind,redundancy,type", calc_PhiID_test_params)
-def test_calc_PhiID_sample_1(PhiID_matlab_sample_1, kind, redundancy, type):
+def test_calc_PhiID_sample_1(PhiID_test_simple_1, kind, redundancy, type):
     """Test calc_PhiID function."""
-    data = PhiID_matlab_sample_1
+    data = PhiID_test_simple_1
     calc_res = calc_PhiID(
         data["src"].squeeze(), 
         data["trg"].squeeze(), 
