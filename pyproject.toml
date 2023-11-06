@@ -1,0 +1,64 @@
+[project]
+name = "phyid"
+description = "Python Toolbox for Information Decomposition"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+keywords = ["pid", "information theory"]
+authors = [
+  {name = "Eric Ceballos", email = "eric.ceballosdominguez@mail.mcgill.ca"},
+  {name = "Zhen-Qi Liu", email = "zhenqi.liu@mail.mcgill.ca"},
+  {name = "Andrea I. Luppi", email = "andrea.luppi@mcgill.ca"}
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: BSD License",
+  "Programming Language :: Python :: 3 :: Only"
+]
+
+dependencies = [
+  "numpy",
+  "scipy"
+]
+dynamic=["version"]
+
+[build-system]
+requires = ["setuptools", "versioneer[toml]"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+version = {attr = "phyid.__version__"}
+
+[tool.versioneer]
+VCS = "git"
+style = "pep440"
+versionfile_source = "phyid/_version.py"
+versionfile_build = "phyid/_version.py"
+tag_prefix = ""
+parentdir_prefix = ""
+
+[tool.ruff]
+select = ["E", "F", "B", "D", "NPY"]
+ignore = ["E402"]
+line-length = 120
+exclude = [
+    "setup.py",
+    "versioneer.py",
+    "phyid/_version.py"
+]
+target-version = "py38"
+
+[tool.ruff.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["D104"]
+"phyid/tests/*" = ["B011"]
+
+[tool.coverage.run]
+source = ["phyid"]
+omit = [
+    "phyid/tests/*",
+    "phyid/_version.py",
+]
