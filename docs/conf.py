@@ -11,7 +11,7 @@ import sys
 
 project = 'phyid'
 copyright = '2023, phyid developers'
-author = 'Zhen-Qi Liu, Eric Ceballos, Andrea Luppi'
+author = 'Eric Ceballos, Zhen-Qi Liu, Andrea Luppi, Pedro Mediano, Fernando Rosas'
 
 # Import project to get version info
 sys.path.insert(0, os.path.abspath(os.path.pardir))
