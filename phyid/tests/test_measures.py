@@ -3,11 +3,6 @@ import pytest
 import numpy as np
 from phyid.measures import (
     local_entropy_mvn,
-    local_entropy_binary,
-    redundancy_mmi,
-    double_redundacy_mmi,
-    redundancy_ccs,
-    double_redundacy_ccs,
 )
 
 @pytest.mark.parametrize(

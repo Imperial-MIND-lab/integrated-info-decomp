@@ -29,8 +29,19 @@ def local_entropy_mvn(x, mu, cov):
 
 
 def local_entropy_binary(x):
-    # x (dim, n_samples)
+    """
+    Calculate the local entropy based on binary distribution.
 
+    Parameters
+    ----------
+    x : array_like, shape (n_dims, n_samples)
+        input data
+
+    Returns
+    -------
+    h : array_like, shape (n_samples,)
+        local entropy
+    """
     if x.ndim == 1:
         x = x[None, :]
     n_dim, n_samp = x.shape

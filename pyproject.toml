@@ -27,6 +27,9 @@ dynamic=["version"]
 requires = ["setuptools", "versioneer[toml]"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools]
+packages = ["phyid"]
+
 [tool.setuptools.dynamic]
 version = {attr = "phyid.__version__"}
 

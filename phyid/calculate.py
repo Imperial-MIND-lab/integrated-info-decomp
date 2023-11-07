@@ -2,7 +2,6 @@
 """Calculate the information decompositions."""
 
 import numpy as np
-from functools import partial
 from .measures import (
     local_entropy_mvn,
     local_entropy_binary,
@@ -21,9 +20,11 @@ def _get_entropy_four_vec(X, kind):
     if kind == "gaussian":
         X_cov = np.cov(X)
         X_mu = np.mean(X, axis=1)
-        _h = lambda idx: local_entropy_mvn(X[idx].T, X_mu[idx], X_cov[np.ix_(idx, idx)])
+        def _h(idx):
+            return local_entropy_mvn(X[idx].T, X_mu[idx], X_cov[np.ix_(idx, idx)])
     elif kind == "discrete":
-        _h = lambda idx: local_entropy_binary(X[idx, :])
+        def _h(idx):
+            return local_entropy_binary(X[idx, :])
     else:
         raise ValueError("kind must be one of 'gaussian' or 'discrete'")
 
@@ -153,8 +154,32 @@ def _get_atoms_four_vec(calc_res):
     return atoms_res
 
 
-def calc_PhiID(src, trg, tau, kind="gaussian", redundancy="MMI", only_return_atoms=True):
+def calc_PhiID(src, trg, tau, kind="gaussian", redundancy="MMI"):
+    """
+    Calculate the information decompositions.
 
+    This function calculates the information decompositions of two time series.
+
+    Parameters
+    ----------
+    src : (N,) array_like
+        Source time series.
+    trg : (N,) array_like
+        Target time series.
+    tau : int
+        Time lag.
+    kind : str, optional
+        PhiID kind to calculate, by default "gaussian".
+    redundancy : str, optional
+        Redundancy measure to use, by default "MMI".
+
+    Returns
+    -------
+    atoms_res : dict
+        Dictionary with the atoms of the decomposition.
+    calc_res : dict
+        Dictionary with the intermediate calculations.
+    """
     # check input vectors
     assert len(src) == len(trg)
 
@@ -190,8 +215,5 @@ def calc_PhiID(src, trg, tau, kind="gaussian", redundancy="MMI", only_return_ato
     calc_res["rtr"] = rtr
     atoms_res = _get_atoms_four_vec(calc_res)
 
-    if only_return_atoms:
-        return atoms_res
-    else:
-        return atoms_res, calc_res
+    return atoms_res, calc_res
 

@@ -1,3 +1,4 @@
+"""Sphinx configuration file for phyid documentation."""
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -31,7 +32,6 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
-    'sphinxarg.ext',
 ]
 
 # Generate the API documentation when building
