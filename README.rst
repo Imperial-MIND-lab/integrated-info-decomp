@@ -25,5 +25,7 @@ The library will be available for installation via pip. You can install the late
 Citation
 --------
 
-If you use :code:`phyid` in your research, please cite the following papers:
+If you use :code:`phyid` in your research, please cite the following papers: 
+-Mediano, Rosas, et al. (2021) Towards an extended taxonomy of information dynamics via Integrated Information Decomposition. arXiv.
+-Luppi et al. (2022) A synergistic core for human brain evolution and cognition. Nature Neuroscience 25, 771–782.
 
