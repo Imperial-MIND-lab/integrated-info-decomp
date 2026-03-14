@@ -1,19 +1,16 @@
-# -*- coding: utf-8 -*-
 """Calculate the information decompositions."""
 
 import numpy as np
+
 from .measures import (
-    local_entropy_mvn,
-    local_entropy_binary,
-    redundancy_mmi,
-    double_redundacy_mmi,
-    redundancy_ccs,
     double_redundacy_ccs,
+    double_redundacy_mmi,
+    local_entropy_binary,
+    local_entropy_mvn,
+    redundancy_ccs,
+    redundancy_mmi,
 )
-from .utils import (
-    PhiID_atoms_abbr,
-    _binarize
-)
+from .utils import PhiID_atoms_abbr, _binarize
 
 
 def _get_entropy_four_vec(X, kind):

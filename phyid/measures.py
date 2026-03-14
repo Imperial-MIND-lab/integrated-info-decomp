@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
 """Information-theoretic measures."""
+
+from collections import Counter
+from itertools import product
 
 import numpy as np
 import scipy.stats as sstats
-from itertools import product
-from collections import Counter
 
 
 def local_entropy_mvn(x, mu, cov):

@@ -1,4 +1,3 @@
 # -r ../requirements.txt
-# https://github.com/readthedocs/readthedocs.org/issues/10279
-sphinx>=2.0, <7.0.0
+sphinx
 sphinx_rtd_theme

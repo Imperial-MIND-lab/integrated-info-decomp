@@ -1,10 +1,13 @@
 """For testing calculate.py file."""
-import pytest
 import urllib.request
+
 import numpy as np
+import pytest
 from scipy.io import loadmat
+
 from phyid.calculate import calc_PhiID
 from phyid.utils import PhiID_atoms_abbr
+
 
 @pytest.fixture(scope="session")
 def PhiID_test_simple_1(tmp_path_factory):
@@ -24,11 +27,11 @@ calc_PhiID_test_params = [
 def test_calc_PhiID_sample_1(PhiID_test_simple_1, kind, redundancy, type):
     """Test calc_PhiID function."""
     data = PhiID_test_simple_1
-    atoms_res, calc_res = calc_PhiID(
-        data["src"].squeeze(), 
-        data["trg"].squeeze(), 
-        int(data["tau"].squeeze()), 
-        kind=kind, 
+    atoms_res, _ = calc_PhiID(
+        data["src"].squeeze(),
+        data["trg"].squeeze(),
+        int(data["tau"].squeeze()),
+        kind=kind,
         redundancy=redundancy
     )
     calc_L = np.array([atoms_res[_] for _ in PhiID_atoms_abbr])

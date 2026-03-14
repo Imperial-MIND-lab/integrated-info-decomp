@@ -1,12 +1,14 @@
 """For testing measures.py file."""
-import pytest
 import numpy as np
+import pytest
+
 from phyid.measures import (
     local_entropy_mvn,
 )
 
+
 @pytest.mark.parametrize(
-    "test_input,expected", 
+    "test_input,expected",
     [
         ((0, 0, 1), 0.9189385332046727),
         ((0, [0], [1]), 0.9189385332046727),

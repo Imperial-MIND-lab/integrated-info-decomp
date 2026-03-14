@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
 """Utilities for phyid."""
 import numpy as np
-
 
 PhiID_atoms_abbr = [
     "rtr", "rtx", "rty", "rts",
